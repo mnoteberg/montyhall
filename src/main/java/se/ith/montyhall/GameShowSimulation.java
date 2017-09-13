@@ -56,7 +56,7 @@ public class GameShowSimulation {
      * @return {@code true} if the player won this game, {@code false} otherwise.
      */
     private boolean playGame(int firstSelectedBox, GameStrategy gameStrategy) {
-        GameShow gameShow = new GameShow();
+        GameShow gameShow = new GameShow(ran);
         gameShow.selectBox(firstSelectedBox);
         gameShow.letHostOpenBox();
         if (gameStrategy == GameStrategy.CHANGE_OF_HEARTS) {

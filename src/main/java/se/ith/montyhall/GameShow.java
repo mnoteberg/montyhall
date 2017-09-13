@@ -3,6 +3,7 @@ package se.ith.montyhall;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import com.google.common.collect.Lists;
 
@@ -14,8 +15,11 @@ public class GameShow {
     /**
      * Initializes a game show, with three boxes out of which a random one has money in it.
      */
-    public GameShow() {
-        initAndShuffleBoxes();
+    public GameShow(Random ran) {
+        if (ran == null) {
+            throw new IllegalArgumentException("Must provide a random seed.");
+        }
+        initAndShuffleBoxes(ran);
     }
 
     /**
@@ -81,9 +85,9 @@ public class GameShow {
     /**
      * Create and shuffle the initial set of boxes. One box with money, two without.
      */
-    private void initAndShuffleBoxes() {
+    private void initAndShuffleBoxes(Random ran) {
         boxes = Lists.newArrayList(new Box(true), new Box(false), new Box(false));
-        Collections.shuffle(boxes);
+        Collections.shuffle(boxes, ran);
     }
 
 }
